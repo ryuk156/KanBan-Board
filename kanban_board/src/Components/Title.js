@@ -3,14 +3,20 @@ import { InputBase, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 const Styles = makeStyles((theme) => ({
-  editableTitle: {
-    flexGrow: 1,
-  },
   editableContainer: {
     marginLeft: theme.spacing(1),
     display: "flex",
+    marginTop: theme.spacing(1),
+  },
+
+  editableTitle: {
+    flexGrow: 1,
+    fontSize: "1.5rem",
+    fontWeight: "bold",
   },
   input: {
+    fontSize: "1.5rem",
+    fontWeight: "bold",
     margin: theme.spacing(1),
     "&:focus": {
       background: "#ddd",
@@ -25,6 +31,7 @@ function Title() {
       {open ? (
         <div>
           <InputBase
+            autoFocus
             value="Todo"
             inputProps={{
               className: cls.input,
@@ -39,7 +46,7 @@ function Title() {
             onClick={() => setOpen(!open)}
             className={cls.editableTitle}
           >
-            Todo{" "}
+            Todo
           </Typography>
           <MoreHorizIcon />
         </div>
