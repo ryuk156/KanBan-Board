@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import {
   InputBase,
   Typography,
@@ -8,6 +8,8 @@ import {
 } from "@material-ui/core";
 import ClearIcon from "@material-ui/icons/Clear";
 import { makeStyles, fade } from "@material-ui/core/styles";
+
+import storeApi from "../utils/storeApi.js";
 
 const Styles = makeStyles((theme) => ({
   card: {
@@ -28,25 +30,43 @@ const Styles = makeStyles((theme) => ({
     margin: theme.spacing(0, 1, 1, 1),
   },
 }));
-function InputCard({ setopen }) {
+
+function InputCard({ setopen, listid }) {
+  const [cardtitle, setCardtitle] = useState("");
+  const { addmorecard } = useContext(storeApi);
   const cls = Styles();
+
+  const handleChange = (e) => {
+    setCardtitle(e.target.value);
+  };
+
+  const handleSubmit = () => {
+    addmorecard(cardtitle, listid);
+    setCardtitle("");
+    setopen(false);
+  };
+
+  const handleBlur = () => {
+    setopen(false);
+  };
   return (
     <div>
       <div>
         <Paper className={cls.card}>
           <InputBase
             multiline
-            onBlur={() => setopen(false)}
+            onChange={handleChange}
             fullWidth
             inputProps={{
               className: cls.input,
             }}
+            value={cardtitle}
             placeholder="Enter Content"
           />
         </Paper>
       </div>
       <div className={cls.addcardbtn}>
-        <Button className={cls.btnadd} onClick={() => setopen(false)}>
+        <Button className={cls.btnadd} onClick={handleSubmit}>
           Add Card
         </Button>
         <IconButton onClick={() => setopen(false)}>

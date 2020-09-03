@@ -15,13 +15,13 @@ const Styles = makeStyles((theme) => ({
     },
   },
 }));
-function InputContainer() {
+function InputContainer({ listid }) {
   const [open, setopen] = useState(false);
   const cls = Styles();
   return (
     <div className={cls.root}>
       <Collapse in={open}>
-        <InputCard setopen={setopen} />
+        <InputCard setopen={setopen} listid={listid} />
       </Collapse>
 
       <Collapse in={!open}>
