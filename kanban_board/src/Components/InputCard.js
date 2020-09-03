@@ -31,24 +31,30 @@ const Styles = makeStyles((theme) => ({
   },
 }));
 
-function InputCard({ setopen, listid }) {
-  const [cardtitle, setCardtitle] = useState("");
-  const { addmorecard } = useContext(storeApi);
+function InputCard({ setopen, listid, type }) {
+  const [title, settitle] = useState("");
+  const { addmorecard, addmorelist } = useContext(storeApi);
   const cls = Styles();
 
   const handleChange = (e) => {
-    setCardtitle(e.target.value);
+    settitle(e.target.value);
   };
 
   const handleSubmit = () => {
-    addmorecard(cardtitle, listid);
-    setCardtitle("");
-    setopen(false);
+    if (type === "card") {
+      addmorecard(title, listid);
+      settitle("");
+      setopen(false);
+    } else {
+      addmorelist(title);
+      settitle("");
+      setopen(false);
+    }
   };
 
-  const handleBlur = () => {
+  /* const handleBlur = () => {
     setopen(false);
-  };
+  }; */
   return (
     <div>
       <div>
@@ -60,14 +66,14 @@ function InputCard({ setopen, listid }) {
             inputProps={{
               className: cls.input,
             }}
-            value={cardtitle}
-            placeholder="Enter Content"
+            value={title}
+            placeholder={type === "card" ? "Enter content" : "Enter title"}
           />
         </Paper>
       </div>
       <div className={cls.addcardbtn}>
         <Button className={cls.btnadd} onClick={handleSubmit}>
-          Add Card
+          {type === "card" ? "Add Card" : "Add List"}
         </Button>
         <IconButton onClick={() => setopen(false)}>
           <ClearIcon />

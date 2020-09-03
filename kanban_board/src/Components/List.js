@@ -23,7 +23,7 @@ function List({ list }) {
           <Card key={card.id} card={card} />
         ))}
 
-        <InputContainer listid={list.id} />
+        <InputContainer listid={list.id} type="card" />
       </Paper>
     </div>
   );

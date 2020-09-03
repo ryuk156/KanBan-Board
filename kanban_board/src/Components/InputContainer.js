@@ -4,7 +4,8 @@ import { makeStyles, fade } from "@material-ui/core/styles";
 import InputCard from "./InputCard";
 const Styles = makeStyles((theme) => ({
   root: {
-    marginTop: theme.spacing(2),
+    width: "300px",
+    marginTop: theme.spacing(1),
   },
   addcard: {
     padding: theme.spacing(1, 1, 1, 2),
@@ -15,13 +16,13 @@ const Styles = makeStyles((theme) => ({
     },
   },
 }));
-function InputContainer({ listid }) {
+function InputContainer({ listid, type }) {
   const [open, setopen] = useState(false);
   const cls = Styles();
   return (
     <div className={cls.root}>
       <Collapse in={open}>
-        <InputCard setopen={setopen} listid={listid} />
+        <InputCard setopen={setopen} listid={listid} type={type} />
       </Collapse>
 
       <Collapse in={!open}>
@@ -30,7 +31,9 @@ function InputContainer({ listid }) {
           onClick={() => setopen(!open)}
           elevation={0}
         >
-          <Typography>+ Add a Card</Typography>
+          <Typography>
+            {type === "card" ? " + Add a Card" : "+ Add a List"}
+          </Typography>
         </Paper>
       </Collapse>
     </div>
