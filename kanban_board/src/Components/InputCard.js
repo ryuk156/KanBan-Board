@@ -52,9 +52,6 @@ function InputCard({ setopen, listid, type }) {
     }
   };
 
-  /* const handleBlur = () => {
-    setopen(false);
-  }; */
   return (
     <div>
       <div>

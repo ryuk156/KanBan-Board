@@ -17,7 +17,7 @@ function List({ list }) {
   return (
     <div>
       <Paper className={cls.root} elevation={3}>
-        <Title title={list.title} />
+        <Title title={list.title} listid={list.id} />
 
         {list.cards.map((card) => (
           <Card key={card.id} card={card} />
