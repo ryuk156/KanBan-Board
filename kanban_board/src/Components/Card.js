@@ -8,12 +8,12 @@ const Styles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
 }));
-function Card() {
+function Card({ card }) {
   const cls = Styles();
   return (
     <div>
       <Paper elevation={3} className={cls.card}>
-        making todo
+        {card.title}
       </Paper>
     </div>
   );

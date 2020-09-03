@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Title from "./Title.js";
 import Card from "./Card.js";
 import InputContainer from "./InputContainer.js";
+
 const Styles = makeStyles((theme) => ({
   root: {
     width: "300px",
@@ -11,15 +12,17 @@ const Styles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
   },
 }));
-function List() {
+function List({ list }) {
   const cls = Styles();
   return (
     <div>
       <Paper className={cls.root} elevation={3}>
-        <Title />
-        <Card />
-        <Card />
-        <Card />
+        <Title title={list.title} />
+
+        {list.cards.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
+
         <InputContainer />
       </Paper>
     </div>

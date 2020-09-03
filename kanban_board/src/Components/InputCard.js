@@ -49,8 +49,8 @@ function InputCard({ setopen }) {
         <Button className={cls.btnadd} onClick={() => setopen(false)}>
           Add Card
         </Button>
-        <IconButton>
-          <ClearIcon onClick={() => setopen(false)} />
+        <IconButton onClick={() => setopen(false)}>
+          <ClearIcon />
         </IconButton>
       </div>
     </div>
