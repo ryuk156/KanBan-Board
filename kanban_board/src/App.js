@@ -82,7 +82,9 @@ function App() {
     const draggingCard = sourceList.cards.filter(
       (card) => card.id === draggableId
     )[0];
+
     if (source.droppableId === destination.droppableId) {
+      //cards are in same list
       sourceList.cards.splice(source.index, 1);
       destinationList.cards.splice(destination.index, 0, draggingCard);
       const newState = {
@@ -90,6 +92,19 @@ function App() {
         lists: {
           ...data.lists,
           [sourceList.id]: destinationList,
+        },
+      };
+      setdata(newState);
+    } else {
+      sourceList.cards.splice(source.index, 1);
+      destinationList.cards.splice(destination.index, 0, draggingCard);
+      const newState = {
+        ...data,
+        lists: {
+          ...data.lists,
+
+          [sourceList.id]: sourceList,
+          [destinationList.id]: destinationList,
         },
       };
       setdata(newState);
